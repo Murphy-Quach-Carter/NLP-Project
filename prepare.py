@@ -105,19 +105,16 @@ def remove_stopwords(string, extra_words = [], exclude_words = []):
     
     
     
- 
-
-
-def prep_article_data(df, extra_words=[], exclude_words=[]):
-    '''
-    This function take in a df and the string name for a text column with 
+def prep_repo_data(df, extra_words=[], exclude_words=[]):
+    '''This function take in a df and the string name for a text column with 
     option to pass lists for extra_words and exclude_words and
     returns a df with the repo, language, readme_content, and new columns which are the 
-    original columns which have been 
-    cleaned, tokenized, lemmatized and had the stopwords removed. Also renames column repo as repo_name
+    original columns which have been cleaned, tokenized, lemmatized and had the stopwords     removed. Also renames column repo as repo_name
     '''
     
     df.rename(columns = {'repo': 'repo_name'}, inplace = True)
+    
+    df.drop_duplicates(inplace = True)
     
     df['repo_name_cleaned'] = df['repo_name'].apply(basic_clean)\
                             .apply(tokenize)\
