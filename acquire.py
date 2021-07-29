@@ -10,7 +10,7 @@ import os
 import json
 from typing import Dict, List, Optional, Union, cast
 import requests
-
+from bs4 import BeautifulSoup
 from env import github_token, github_username
 
 # TODO: Make a github personal access token.
@@ -21,18 +21,22 @@ from env import github_token, github_username
 # TODO: Add more repositories to the `REPOS` list below.
 
 def git_list_of_repos(url_list):
+    repo_list = []
     for url in url_list:
-        url = url
         headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
-        response = get(url, headers=headers)
+        response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.text, 'html.parser')
         the_list = soup.findAll('h1', class_='h3 lh-condensed')
         for i in range(len(the_list)):
-        repo_list.append(the_list[i].text.replace('\n','').replace(' ',""))
-    return 
+            repo_list.append(the_list[i].text.replace('\n','').replace(' ',""))
+    return repo_list
 
 
-REPOS = []
+REPOS = git_list_of_repos(['https://github.com/trending/java?since=monthly&spoken_language_code=en','https://github.com/trending/python?since=monthly&spoken_language_code=en',\
+                           'https://github.com/trending/javascript?since=daily&spoken_language_code=en', 'https://github.com/trending/r?since=daily&spoken_language_code=en',\
+                           'https://github.com/trending/java?since=daily&spoken_language_code=en','https://github.com/trending/python?since=weekly&spoken_language_code=en',\
+                           'https://github.com/trending/javascript?since=monthly&spoken_language_code=en', 'https://github.com/trending/r?since=monthly&spoken_language_code=en',\
+                           'https://github.com/trending/r?since=monthly&spoken_language_code=en'])
  
 
 headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
@@ -92,6 +96,7 @@ def process_repo(repo: str) -> Dict[str, str]:
     Takes a repo name like "gocodeup/codeup-setup-script" and returns a
     dictionary with the language of the repo and the readme contents.
     """
+    print(repo)
     contents = get_repo_contents(repo)
     readme_contents = requests.get(get_readme_download_url(contents)).text
     return {
