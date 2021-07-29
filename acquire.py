@@ -20,6 +20,18 @@ from env import github_token, github_username
 # TODO: Add your github username to your env.py file under the variable `github_username`
 # TODO: Add more repositories to the `REPOS` list below.
 
+def git_list_of_repos(url_list):
+    for url in url_list:
+        url = url
+        headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
+        response = get(url, headers=headers)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        the_list = soup.findAll('h1', class_='h3 lh-condensed')
+        for i in range(len(the_list)):
+        repo_list.append(the_list[i].text.replace('\n','').replace(' ',""))
+    return 
+
+
 REPOS = []
  
 
@@ -94,6 +106,8 @@ def scrape_github_data() -> List[Dict[str, str]]:
     Loop through all of the repos and process them. Returns the processed data.
     """
     return [process_repo(repo) for repo in REPOS]
+
+
 
 
 if __name__ == "__main__":
