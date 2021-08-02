@@ -34,3 +34,26 @@
 
  
   
+<hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
+
+### Pipeline Stages Breakdown
+
+<hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
+
+> - Data Acquisition
+> - Data Preparation
+> - Exploration 
+> - Modeling and Evaluation
+
+
+<hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
+
+### Reproduce My Project
+
+<hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
+
+You will need your own env file with database credentials along with all the necessary files listed below to run my final project notebook. 
+- [x] Read this README.md
+- [ ] Download data2.json file
+- [ ] Download the aquire.py, prepare.py, explore.py and Final_notebook.ipynb files into your working directory
+- [ ] Run the Final_notebook.ipynb notebook
