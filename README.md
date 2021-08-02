@@ -37,7 +37,7 @@
 
 - The models we created were a Decision tree, KNNeighbors, and Naives Bayes. To reiterate the model we chose was the KNNeighbors as our best model with a 82.86% accuracy rate for predicting the programming language of readme contents from Github.
 
-- The K-Nearest Neighbors Model(82.86%) outperformed our baseline score of 26.80 % thus it has value.
+- The K-Nearest Neighbors Model (82.86%) outperformed our baseline score of 26.80 % thus it has value.
 
  
   
