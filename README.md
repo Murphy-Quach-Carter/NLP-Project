@@ -11,14 +11,9 @@
 
 #### Data Dictionary
     
-- This is a data dictionary as a reference for the variables used within in the data set. A sample of what is included in data dictionary is below. 
+- This is a data dictionary as a reference for the variables used within in the data set. 
+![img](https://user-images.githubusercontent.com/80718476/127889936-16cabb87-8670-4962-9e2f-87c403741d35.png)
 
-| Attribute | Definition | Data Type |
-| ----- | ----- | ----- | ----- |
-|repo_name|Name of Repository|object|
-|language|The language the repository is in|object| 
-|readme_contents|The contents of each readme| object| 
-|readme_contents_cleaned|The contents of each readme that does a basic clean, renamed columns, tokenizes, lemmatizes, and removes stop words|object| 
 
 
 
