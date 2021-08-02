@@ -15,10 +15,10 @@
 
 | Attribute | Definition | Data Type |
 | ----- | ----- | ----- | ----- |
-|repo_name| Name of Repository |object|
-|language  |The language the repository is in| object | 
-|readme_contents|The contents of each readme  | object  | 
-|readme_contents_cleaned  |The contents of each readme that does a basic clean, renamed columns, tokenizes, lemmatizes, and removes stop words | object  | 
+|repo_name|Name of Repository|object|
+|language|The language the repository is in|object| 
+|readme_contents|The contents of each readme| object| 
+|readme_contents_cleaned|The contents of each readme that does a basic clean, renamed columns, tokenizes, lemmatizes, and removes stop words|object| 
 
 
 
