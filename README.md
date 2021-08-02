@@ -22,6 +22,7 @@
 ### Executive Summary
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 <b>Findings:</b>
+
 - It was difficult to find one main feature that would predict the language of the readme contents due to many words being similar between languages.
 
 - Through exploration we were able to find correlation between a list of unique words with unique combinations to be able predict language of the readme contents.
