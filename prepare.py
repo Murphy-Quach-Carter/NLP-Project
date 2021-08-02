@@ -6,6 +6,8 @@ import requests
 from bs4 import BeautifulSoup
 from env import github_token, github_username
 
+from sklearn.model_selection import  train_test_split
+
 import unicodedata
 import re
 import json
@@ -26,6 +28,7 @@ def basic_clean(string):
              .encode('ascii', 'ignore')\
              .decode('utf-8', 'ignore')
     string = re.sub(r'[^\w\s]', '', string).lower()
+    string = re.sub(r"[^a-z0-9'\s]", '', string)
     return string
 
 def tokenize(string):
@@ -135,6 +138,19 @@ def prep_repo_data(df, extra_words=[], exclude_words=[]):
                                    extra_words=extra_words, 
                                    exclude_words=exclude_words)
     
+    
     return df
 
 
+
+def split_for_model(df, target):
+    train_validate, test = train_test_split(df, test_size=.2, 
+                                        random_state=321, stratify=df[target])
+    train, validate = train_test_split(train_validate, test_size=.3, 
+                                   random_state=231, stratify=train_validate[target])
+    
+    print('train{},validate{},test{}'.format(train.shape, validate.shape, test.shape))
+    return train, validate, test
+
+
+    
