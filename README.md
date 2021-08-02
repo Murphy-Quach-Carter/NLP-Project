@@ -1,7 +1,7 @@
 <img src="https://github.com/LinhQuach13/readme_files/blob/master/NLP%20Project%20Predicting%20READMEs.gif">
 
 #### Project Goals
-> - The goal will be to build a model that can predict what programming language a repository is, given the text of the README file.
+> - The goal will be to build a model that can predict what programming language a repository is given the text of the README file.
 
 
 #### Project Deliverables
