@@ -12,7 +12,7 @@
 #### Data Dictionary
     
 - This is a data dictionary as a reference for the variables used within in the data set. 
-![img](https://user-images.githubusercontent.com/80718476/127889936-16cabb87-8670-4962-9e2f-87c403741d35.png)
+![img](https://user-images.githubusercontent.com/80718476/127890072-0875c03d-713f-40c4-b387-9c0e9784ea96.png)
 
 
 
