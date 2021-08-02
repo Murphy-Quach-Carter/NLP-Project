@@ -70,7 +70,7 @@ def lemmatize(string):
     # Use the lemmatizer on each word in the list of words we created by using split.
     lemmas = [wnl.lemmatize(word) for word in string.split()]
     
-    # Join our list of words into a string again and assign to a variable.
+    # This will Join our list of words into a string again and assign to a variable.
     string = ' '.join(lemmas)
     
     return string
