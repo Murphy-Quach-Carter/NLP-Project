@@ -13,16 +13,12 @@
     
 - This is a data dictionary as a reference for the variables used within in the data set. A sample of what is included in data dictionary is below. 
 
-| Attribute | Definition | Data Type | Values|
+| Attribute | Definition | Data Type |
 | ----- | ----- | ----- | ----- |
-|XXXXXX| XXXXXX | XXXXXX|XXXXXX  |
-|XXXXXX  |XXXXXX| XXXXXX | XXXXXX  |
-|XXXXXX |XXXXXX  | XXXXXX  | XXXXXX  |
-|XXXXXX  |XXXXXX | XXXXXX  | XXXXXX |
-|XXXXXX | XXXXXX | XXXXXX  | XXXXXX  |
-|XXXXXX | XXXXXX | XXXXXX  |XXXXXX   |
-|XXXXXX | XXXXXX | XXXXXX  |XXXXXX   |
-|XXXXXX | XXXXXX  |XXXXXX  |XXXXXX  |
+|repo_name| Name of Repository |object|
+|language  |The language the repository is in| object | 
+|readme_contents|The contents of each readme  | object  | 
+|readme_contents_cleaned  |The contents of each readme that does a basic clean, renamed columns, tokenizes, lemmatizes, and removes stop words | object  | 
 
 
 
