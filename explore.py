@@ -1,46 +1,79 @@
-import seaborn as sns
-import os
-from pydataset import data
-from scipy import stats
 import pandas as pd
-import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from wordcloud import WordCloud
 
-from sklearn.model_selection import train_test_split
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder, MinMaxScaler
+def show_counts_and_ratios(df, column):
+    """
+    Takes in a dataframe and a string of a single column
+    Returns a dataframe with absolute value counts and percentage value counts
+    """
+    labels = pd.concat([df[column].value_counts(),
+                    df[column].value_counts(normalize=True)], axis=1)
+    labels.columns = ['n', 'percent']
+    labels
+    return labels
 
-# ignore warnings
-import warnings
-warnings.filterwarnings("ignore")
 
-
-def lang_split(df):
+def show_scatter_plot(df, x, y, hue=None):
     '''
-    This function take in the readme data acquired
-    performs a split and stratifies language_cleaned column.
-    Returns train, validate, and test dfs.
+    Shows scatter plot for 2 given points
     '''
-    train_validate, test = train_test_split(df, test_size=.2, 
-                                        random_state=245, 
-                                        stratify=df.language_cleaned)
-    train, validate = train_test_split(train_validate, test_size=.3, 
-                                   random_state=245, 
-                                   stratify=train_validate.language_cleaned)
-    return train, validate, test
-
-
-
-
-def xy_split(X, y):
-    '''
-    This function take in the readme data acquired
-    performs a split and stratifies language_cleaned column.
-    Returns train, validate, and test dfs.
-    '''
-    X_train_validate, X_test, y_train_validate, y_test = train_test_split(X, y, test_size=.2, 
-                                                                          random_state=254, 
-                                                                          stratify = y)
+    plt.figure(figsize=(12,6))
+    plt.title("{} vs {}".format(x,y))
+    sns.scatterplot(data=df, x=df[x], y=df[y], hue=hue)
+    plt.show()
     
-    X_train, X_validate, y_train, y_validate = train_test_split(X_train_validate, y_train_validate, test_size=.3,random_state=254,stratify= y_train_validate)
+
+def show_distributions(word_table, orderby='All'):
+    plt.rc('figure', figsize=(12,6))
+    (word_table
+ .assign(java = word_table.java / word_table['All'],
+         javascript =word_table.javascript/ word_table['All'],
+         r = word_table.r / word_table['All'],
+         python =word_table.python / word_table['All'])
+ .sort_values(by='All')
+ [['java', 'javascript','r','python']]
+ .tail(20)
+ .sort_values(orderby)
+ .plot.barh(stacked=True))
     
-    return X_train, X_validate, y_train, y_validate, X_test, y_test
+
+#function to create word clouds
+def word_cloud(word_string, name):
+    from wordcloud import WordCloud
+    img = WordCloud(background_color='white', width=800, height=600).generate(word_string)
+    print('-------------------')
+    print(f'{name}')
+    print('-------------------')
+    plt.imshow(img)
+    plt.axis('off')
+    
+    
+def df_to_wordcloud(df, language = None):
+    if language: 
+        df = df[df.language_cleaned == language]
+    else:
+        language = 'all_language'
+    to_list = ''
+    for readme in df.readme_contents_cleaned:
+        to_list += readme
+    word_cloud(to_list,language)
+    
+    
+def bigrams_wordclouds(thelist):
+    data = {k[0] + ' ' + k[1]: v for k, v in thelist.to_dict().items()}
+    img = WordCloud(background_color='white', width=800, height=400).generate_from_frequencies(data)
+    plt.figure(figsize=(8,4))
+    plt.imshow(img)
+    plt.axis('off')
+    plt.show()
+    
+def trigrams_wordclouds(thelist):
+    data = {k[0] + ' ' + k[1] + ' '+ k[2]: v for k, v in thelist.to_dict().items()}
+    img = WordCloud(background_color='white', width=800, height=400).generate_from_frequencies(data)
+    plt.figure(figsize=(8,4))
+    plt.imshow(img)
+    plt.axis('off')
+    plt.show()
+    

@@ -1,10 +1,7 @@
-
 import os
 import json
 from typing import Dict, List, Optional, Union, cast
-import requests
-from bs4 import BeautifulSoup
-from env import github_token, github_username
+
 
 from sklearn.model_selection import  train_test_split
 
@@ -19,6 +16,7 @@ from nltk.corpus import stopwords
 import pandas as pd
 
 
+
 def basic_clean(string):
     '''
     This function takes in a string and
@@ -28,7 +26,7 @@ def basic_clean(string):
              .encode('ascii', 'ignore')\
              .decode('utf-8', 'ignore')
     string = re.sub(r'[^\w\s]', '', string).lower()
-    string = re.sub(r"[^a-z0-9'\s]", '', string)
+    #string = re.sub(r"[^a-z0-9'\s]", '', string)
     return string
 
 def tokenize(string):
@@ -115,6 +113,7 @@ def prep_repo_data(df, extra_words=[], exclude_words=[]):
     original columns which have been cleaned, tokenized, lemmatized and had the stopwords     removed. Also renames column repo as repo_name
     '''
     
+    
     df.rename(columns = {'repo': 'repo_name'}, inplace = True)
     
     df.drop_duplicates(inplace = True)
@@ -143,14 +142,33 @@ def prep_repo_data(df, extra_words=[], exclude_words=[]):
 
 
 
-def split_for_model(df, target):
+def lang_split(df):
+    '''
+    This function take in the readme data acquired
+    performs a split and stratifies language_cleaned column.
+    Returns train, validate, and test dfs.
+    '''
     train_validate, test = train_test_split(df, test_size=.2, 
-                                        random_state=321, stratify=df[target])
+                                        random_state=245, 
+                                        stratify=df.language_cleaned)
     train, validate = train_test_split(train_validate, test_size=.3, 
-                                   random_state=231, stratify=train_validate[target])
-    
-    print('train{},validate{},test{}'.format(train.shape, validate.shape, test.shape))
+                                   random_state=245, 
+                                   stratify=train_validate.language_cleaned)
     return train, validate, test
 
+    
+def lang_split(df):
+    '''
+    This function take in the readme data acquired
+    performs a split and stratifies language_cleaned column.
+    Returns train, validate, and test dfs.
+    '''
+    train_validate, test = train_test_split(df, test_size=.2, 
+                                        random_state=245, 
+                                        stratify=df.language_cleaned)
+    train, validate = train_test_split(train_validate, test_size=.3, 
+                                   random_state=245, 
+                                   stratify=train_validate.language_cleaned)
+    return train, validate, test
 
     
