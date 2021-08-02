@@ -14,7 +14,9 @@
 - This is a data dictionary as a reference for the variables used within in the data set. 
 
 
-![img](https://user-images.githubusercontent.com/80718476/127920431-a071a41b-bc71-4fca-a64f-3c81b6e98f23.png)
+
+![img](https://user-images.githubusercontent.com/80718476/127920556-b1eeb451-391e-426e-8d62-b7432194b4d2.png)
+
 
 
 
