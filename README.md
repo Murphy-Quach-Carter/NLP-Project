@@ -31,17 +31,13 @@
 
 - Through exploration we were able to find correlation between a list of unique words with unique combinations to be able predict language of the readme contents.
 
-- The reduction of noise by removing stop words significantly increased the accuracy score of our models.
+- All of our models were overfit to some degree with the exception of our KNN model.
 
-- All models performed similarly with KNN had the highest accuracy score.
+- The models we created were a Decision tree, KNNeighbors, Logistic Regression, Random Forest, Linear SVC and Naive Bayes. The model we chose as our best model for the test dataset was the KNNeighbors model with a 83% accuracy rate for predicting the programming language of readme contents from Github.
 
-- When comparing train and validate datasets in all the models we see none of the models are overfit.
+- The K-Nearest Neighbors Model (83%) outperformed our baseline score of 27 % thus it has value.
 
-- KNN model is better than baseline but with more time we would continue to work with this model to improve the accuracy score by adjusting hyperparameters and adding more readme contents.
-
-- The models we created were a Decision tree, KNNeighbors, and Naive Bayes. To reiterate the model we chose was the KNNeighbors as our best model with a 82.86% accuracy rate for predicting the programming language of readme contents from Github.
-
-- The K-Nearest Neighbors Model (82.86%) outperformed our baseline score of 26.80 % thus it has value.
+- With more time we would continue to work with our models to improve the accuracy score by adjusting hyperparameters and adding more data by adding more readme contents from github.
 
  
   
