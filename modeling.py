@@ -2,9 +2,13 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.dummy import DummyClassifier
 from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
+import prepare
+
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 import pandas as pd
 import numpy as np
@@ -76,3 +80,27 @@ def test_results(model, X_test, y_test, X_train, y_train, details=False):
         print('-----Test Confusion Matrix------')
         print(pd.DataFrame(confusion_matrix(t_pred, y_test), index=Row_labels, columns=Col_labels))
         
+        
+def predict_readme_contents(string,df):
+    
+    vector = TfidfVectorizer(stop_words = ['data','use'])
+    X = vector.fit(df.readme_contents_cleaned)
+    X = vector.transform(df.readme_contents_cleaned)
+    y = df.language_cleaned
+    
+    X_train, X_validate, y_train, y_validate, X_test, y_test = xy_split(X, y)
+    
+    string = prepare.basic_clean(string)
+    string = prepare.tokenize(string)
+    string = prepare.lemmatize(string)
+    string = prepare.remove_stopwords(string, exclude_words=['data','use'])
+   
+    dicto = {'c':string}
+    string = pd.Series(dicto)
+    answer = vector.transform(dicto)
+    
+    knn = KNeighborsClassifier(n_neighbors=(9))
+    knn.fit(X_train, y_train)
+    result = knn.predict(answer)
+    
+    return result
