@@ -62,5 +62,5 @@
 You will need your own env file with database credentials along with all the necessary files listed below to run my final project notebook. 
 - [x] Read this README.md
 - [ ] Download data2.json file
-- [ ] Download the aquire.py, prepare.py, explore.py and Final_notebook.ipynb files into your working directory
+- [ ] Download the aquire.py, prepare.py, explore.py and Final_notebook2.ipynb files into your working directory
 - [ ] Run the Final_notebook.ipynb notebook
